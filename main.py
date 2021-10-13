@@ -92,12 +92,38 @@ def test_get_longest_concat_digits_asc():
     assert(get_longest_concat_digits_asc([23, 58])) == [23, 58]
     assert(get_longest_concat_digits_asc([82, 43])) == []
 
+def is_prime(n):
+    if n < 2:
+        return False
+    if n == 2:
+        return True
+    d=2
+    while d <= int(math.sqrt(n)) + 1:
+        if n % d == 0:
+            return False
+        d += 1
+    return True
+
+def get_longest_concat_is_prime(lista):
+    secventa_maxima = []
+    for start in range(0, len(lista)):
+        for end in range(start + 1, len(lista) + 1):
+            numar = concatenare_string(lista[start:end])
+            if is_prime(numar):
+                secventa_maxima.append(lista[start:end])
+    secventa_maxima_finala = []
+    for lista_elemente in secventa_maxima:
+        if len(lista_elemente) > len(secventa_maxima_finala):
+            secventa_maxima_finala = lista_elemente
+    return secventa_maxima_finala
+
 def main():
     while True:
         print("1. Citire lista ")
         print("2. Produsul numerelor este impar")
         print("3. Concatenarea numerelor din subsecvență are cifrele în ordine crescătoare")
-        print("4. Iesire din program - exit")
+        print("4. Concatenarea numerelor din subsecvență este număr prim.")
+        print("5. Iesire din program - exit")
         optiune = input("Alege optiunea: ")
         if optiune == "1":
             lista = citire_lista()
@@ -106,6 +132,8 @@ def main():
         elif optiune == "3":
             print(get_longest_concat_digits_asc(lista))
         elif optiune == "4":
+            print(get_longest_concat_is_prime(lista))
+        elif optiune == "5":
             break
         else:
             print("Optiune invalida!")
