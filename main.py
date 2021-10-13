@@ -66,6 +66,12 @@ def concatenare_string(lista):
 
 
 def ordine_crescatoare(n):
+    '''
+    Verifica daca cifrele din n sunt in ordine crescatoare
+    - consider ordine crescatoare oricare a,b cu a <= b
+    :param n: n
+    :return : rezultatul verificarii
+    '''
     m = n
     while m:
         if m % 10 < (m // 10) % 10 :
@@ -74,6 +80,12 @@ def ordine_crescatoare(n):
     return True
 
 def get_longest_concat_digits_asc(lista):
+    '''
+    Gaseste si returneaza cea mai lunga subsecventa a listei pt care concatenarea numerelor din subsecventa are
+    cifrele in rodine crescatoare.
+    :param lista: lista in care va cauta subsecventa cu proprietatea ceruta
+    :return: secventa maxima care indeplineste proprietatea ceruta
+    '''
     secventa_maxima = []
     for start in range(0, len(lista)):
         for end in range(start + 1, len(lista) + 1):
@@ -93,6 +105,11 @@ def test_get_longest_concat_digits_asc():
     assert(get_longest_concat_digits_asc([82, 43])) == []
 
 def is_prime(n):
+    '''
+    Verifica daca un numar este prim
+    :param n: n
+    :return: rezultatul verificarii
+    '''
     if n < 2:
         return False
     if n == 2:
@@ -105,6 +122,11 @@ def is_prime(n):
     return True
 
 def get_longest_concat_is_prime(lista):
+    '''
+    Gaseste si returneaza cea mai lunga subsecventa a listei pt care concatenarea numerelor este un numar prim
+    :param lista: lista in care va cauta subsecventa cu proprietatea ceruta
+    :return: secventa maxima care indeplineste proprietatea ceruta
+    '''
     secventa_maxima = []
     for start in range(0, len(lista)):
         for end in range(start + 1, len(lista) + 1):
@@ -116,6 +138,12 @@ def get_longest_concat_is_prime(lista):
         if len(lista_elemente) > len(secventa_maxima_finala):
             secventa_maxima_finala = lista_elemente
     return secventa_maxima_finala
+
+def test_get_longest_concat_is_prime():
+    assert(get_longest_concat_is_prime([12, 25, 3, 4])) == [12, 25, 3]
+    assert(get_longest_concat_is_prime([4, 25, 6])) == []
+    assert(get_longest_concat_is_prime([42, 3, 8, 71])) == [3]
+    assert(get_longest_concat_is_prime([28])) == []
 
 def main():
     while True:
@@ -139,4 +167,6 @@ def main():
             print("Optiune invalida!")
 
 test_get_longest_product_is_odd()
+test_get_longest_concat_digits_asc()
+test_get_longest_concat_is_prime()
 main()
